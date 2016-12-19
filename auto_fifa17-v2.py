@@ -126,7 +126,7 @@ if __name__ == "__main__":
     time.sleep(10)
     contToReList = 0;
 
-    url = "https://drive.google.com/drive/folders/0B9cai_V_yMVjZ3JCRzQzR1lPTzQ"
+    url = "https://github.com/sandeco/auto_click/blob/master/players.csv"
     s = requests.get(url).content
     df = pd.read_csv(io.StringIO(s.decode('utf-8')))
 
