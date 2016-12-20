@@ -3,8 +3,7 @@ from PIL import Image
 import time
 from MyTyping import MyTyping
 from pymouse import PyMouse
-import io
-import requests
+import random
 import pandas as pd
 
 ## CRIANDO LISTA DE JOGADO, PRECO DE BUSCA, PRECO DE VENDA e PRECO VENDA RAPIDA
@@ -126,9 +125,8 @@ if __name__ == "__main__":
     time.sleep(10)
     contToReList = 0;
 
-    url = "https://github.com/sandeco/auto_click/blob/master/players.csv"
-    s = requests.get(url).content
-    df = pd.read_csv(io.StringIO(s.decode('utf-8')))
+
+    df = pd.read_csv('players.csv')
 
     df = df.loc[df['BIN']<=3000]
 
@@ -136,23 +134,23 @@ if __name__ == "__main__":
     typ.setMaxPrice()
 
     while True:
+        time.sleep(random.randint(15, 16))  ##RETIRAR ISSO AQUI
 
         for player in df.itertuples():
 
             onemore = True ## habilita compra para varias cartas do mesmo jogador. Se encontrar.
-
             while onemore:
+
                 search_player(player)
                 if is_player_found(690,565):
                     if player[3]>0:
                         buy()
-                        sell(player[3])
+                        sell(player[2]+200)
                         marketplace()
                 else:
                     onemore = False ## proximo jogador do dataset
                     m.click(714, 568,1) ## player not found (click OK)
 
-        time.sleep(1)
 
         if (contToReList >= 10):
             relist()
