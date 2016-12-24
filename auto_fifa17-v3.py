@@ -126,7 +126,9 @@ if __name__ == "__main__":
     contToReList = 0;
 
 
-    df = pd.read_csv('players_best_uefa.csv')
+    df = pd.read_csv('players.csv')
+
+    df = df.loc[df['BIN']<=3000]
 
     marketplace()
     typ.setMaxPrice()
@@ -142,10 +144,10 @@ if __name__ == "__main__":
             while onemore:
 
                 search_player(player)
-                if is_player_found(371, 542):
+                if is_player_found(690,565):
                     if player[3]>0:
                         buy(player[1])
-                        sell(player[3])
+                        sell(player[2]+200)
                         marketplace()
                 else:
                     onemore = False ## proximo jogador do dataset
